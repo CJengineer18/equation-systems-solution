@@ -16,63 +16,60 @@ public class MainClass02 {
 		double[][] a;
 		double[] b;
 		double[] initial;
-		// double[] roots;
 		int nVariables;
 		int p;
 		int i;
 		String str;
 
-		System.out.println("Solucion de sistemas de ecuaciones");
+		System.out.println("Solution of equation systems");
 		System.out.println();
-		System.out.println("Paso 1: Definicion del sistema de ecuaciones (Ax=B)");
-		System.out.print("Indique el numero de variables/ecuaciones (Sistema nxn): ");
+		System.out.println("Step 1: Definition of the system of equations (Ax=B)");
+		System.out.print("Indicate the number of variables / equations (System nxn): ");
 
 		nVariables = keyboard.nextInt();
 		a = new double[nVariables][nVariables];
 		b = new double[nVariables];
 		initial = new double[nVariables];
-		// roots = new double[nVariables];
 
 		System.out.println();
-		System.out.println("Inserte los valores de la matrix A, cada fila separada por coma:");
+		System.out.println("Insert the values of the rows of matrix A, each value separated by comma:");
 
 		for (i = 0; i < nVariables; i++) {
-			System.out.printf("Fila %d: ", (i + 1));
+			System.out.printf("Row %d: ", (i + 1));
 			a[i] = convertToVector(keyboard.next(), nVariables);
 		}
 
 		System.out.println();
-		System.out.print("Inserte el vector B, separados por coma: ");
+		System.out.print("Insert vector B, with comma separated values: ");
 
 		b = convertToVector(keyboard.next(), nVariables);
 
 		System.out.println();
-		System.out.println("Paso 2: Seleccion de metodo a utilizar");
-		System.out.print("Escriba los valores iniciales, separados por coma: ");
+		System.out.println("Step 2: Selection of method to use");
+		System.out.print("Enter the initial values (x0), separated by comma: ");
 		initial = convertToVector(keyboard.next(), nVariables);
 
 		System.out.println();
-		System.out.println("Inserte los digitos de precision (-1 para indicar todos los");
-		System.out.print("digitos): ");
+		System.out.print("Insert the precision digits (-1 to indicate all digits): ");
 		p = keyboard.nextInt();
 
 		System.out.println();
-		System.out.println("Seleccione el metodo a utilizar: ");
+		System.out.println("Select the method to use: ");
 		System.out.println();
 		System.out.println("1- Jacobi");
 		System.out.println("2- Gauss-Seidel");
 		System.out.println();
-		System.out.print("Seleccione: ");
+		System.out.print("Choose: ");
 		i = keyboard.nextInt();
 
 		while (i > 2 || i <= 0) {
-			System.err.println("Seleccion invalida!");
-			System.out.print("Seleccione: ");
+			System.err.println("Invalid choose!");
+			System.out.print("Choose: ");
 			i = keyboard.nextInt();
 		}
 
 		System.out.println();
-		System.out.print("Metodo seleccionado: ");
+		System.out.print("Selected method: ");
 
 		switch (i) {
 		case 1:
@@ -86,26 +83,26 @@ public class MainClass02 {
 		}
 
 		System.out.println();
-		System.out.println("Calculando criterio de convergencia...");
+		System.out.println("Calculating convergence criteria ...");
 		if (currentMethod.convergence(a)) {
-			System.out.println("Ejecutando...");
+			System.out.println("Executing...");
 			currentMethod.solution(a, b, initial, p);
 		} else {
 			System.out.println();
-			System.out.println("El criterio de convergencia indica divergencia, por lo");
-			System.out.println("tanto no se puede calcular la solucion con el metodo");
-			System.out.print("seleccionado. Desea probar el otro metodo? (y/n) ");
+			System.out.println("The convergence criterion indicates divergence, therefore the");
+			System.out.println("solution cannot be calculated with the selected method. Do you");
+			System.out.print("want to try the other method? (y/n) ");
 			str = keyboard.next();
 			System.out.println();
 
 			while (!(str.equals("y") || str.equals("n"))) {
-				System.err.println("Respuesta incorrecta!");
-				System.out.print("Desea probar el otro metodo? (y/n)");
+				System.err.println("Wrong answer!");
+				System.out.print("Do you want to try the other method? (y/n)");
 				str = keyboard.next();
 			}
 
 			if (str.equals("y")) {
-				System.out.print("Cambiando a ");
+				System.out.print("Switching to ");
 				switch (i) {
 				case 1:
 					currentMethod = new GaussSeidel();
@@ -117,17 +114,17 @@ public class MainClass02 {
 					break;
 				}
 				System.out.println();
-				System.out.println("Calculando criterio de convergencia...");
+				System.out.println("Calculating convergence criteria ...");
 				if (currentMethod.convergence(a)) {
-					System.out.println("Ejecutando...");
+					System.out.println("Executing ...");
 					currentMethod.solution(a, b, initial, p);
 				} else {
-					System.err.println("Los dos metodos divergen!");
+					System.err.println("The two methods diverge!");
 				}
 			}
 		}
 
-		System.out.println("Limpiando...");
+		System.out.println("Cleaning...");
 		keyboard.close();
 	}
 

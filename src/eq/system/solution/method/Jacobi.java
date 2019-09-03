@@ -51,10 +51,10 @@ public class Jacobi extends SystemSolution {
 				} while (n2 >= 0.0001);
 			}
 
-		}, "Calculando", "Calculando...");
+		}, "Calculating ...", "Calculating ...");
 
 		try {
-			System.out.println("Mostrando resultados...");
+			System.out.println("Showing results ...");
 			new Window01("Jacobi", possibleResults, absError);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

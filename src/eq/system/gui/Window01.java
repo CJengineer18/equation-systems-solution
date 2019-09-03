@@ -21,7 +21,7 @@ public class Window01 extends JGenericWindow {
 	public Window01(String method, ArrayList<double[]> table, ArrayList<Double> error) throws Exception {
 		this.table = table;
 		this.error = error;
-		loadWorkArea(String.format(Locale.ENGLISH, "Resultados para %s", method), 1000, 300, true,
+		loadWorkArea(String.format(Locale.ENGLISH, "Results for %s", method), 1000, 300, true,
 				JGenericWindow.NO_CONFIRM_AT_CLOSE);
 	}
 
@@ -55,7 +55,7 @@ public class Window01 extends JGenericWindow {
 			cols[i] = String.format(Locale.ENGLISH, "x%d(k)", i);
 		}
 
-		cols[cols.length - 1] = "Ea";
+		cols[cols.length - 1] = "Error";
 
 		for (i = 0; i < data.length; i++) {
 			for (j = 0; j < data[i].length; j++) {
